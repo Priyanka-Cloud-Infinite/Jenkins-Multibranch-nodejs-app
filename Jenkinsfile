@@ -11,6 +11,12 @@ pipeline {
      }
      
      stage('Test') { 
+        when{
+           expression{
+                    env.BRANCH_NAME == 'stage' || env.BRANCH_NAME == 'master'
+                    params.ExecuteTest == true
+                }
+          }
         steps { 
            sh 'echo "testing application..."'
         }
@@ -20,9 +26,18 @@ pipeline {
          steps { 
            sh 'echo "deploying application..."'
          }
-
-     }
+      }
   
-   	}
-
-   }
+    }
+    post {
+        always{
+            echo "always" 
+        }
+        success{
+            echo "sucsess" 
+        }
+        failure{
+            echo "always fails" 
+        }
+    }
+}
