@@ -2,14 +2,7 @@ pipeline {
   
    agent any
 
-   stages {
-   
-     stage('Install Dependencies') { 
-        steps { 
-           sh 'sudo apt-get install npm' 
-        }
-     }
-     
+   stages {     
      stage('Test') { 
         steps { 
            sh 'echo "testing application..."'
